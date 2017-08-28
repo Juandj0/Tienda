@@ -14,6 +14,8 @@ public class Disco {
     private String autor;
     private String genero;
     private String caratula;
+    private Cancion[] cancion;
+    private int numeroCanciones;
 
     public String getNombre() {
         return nombre;
@@ -52,7 +54,30 @@ public class Disco {
         this.autor = autor;
         this.genero = genero;
         this.caratula = caratula;
+        this.cancion= new Cancion[15];
+        this.numeroCanciones=0;
+    }
+    public boolean agregarCancion(String nombre, int precio, int tamaño, int calidad){
+        Cancion cancion= new Cancion(nombre,precio,tamaño,calidad);
+      if(this.numeroCanciones<15){
+      this.cancion[this.numeroCanciones]=cancion;
+      this.numeroCanciones++;
+      return true;
+      }  
+        
+    return false;
     }
     
+    public Cancion darInformacionCancion(String nombreCancion){
+        Cancion cancion=null;
+        for(int i=0;i<this.numeroCanciones;i++){
+        if(this.cancion[i].getNombre().equals(nombreCancion)){
+            //equals compara strings
+         cancion=this.cancion[i];
+        }
+        }
+            
+        return cancion;
+    }
     
 }
